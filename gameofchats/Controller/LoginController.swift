@@ -61,39 +61,7 @@ class LoginController: UIViewController {
     }
     
     
-        func handleRegister() {
         
-        guard let email = emailTextField.text, let password = passwordTextField.text , let name = nameTextField.text else {
-            print("Form is not valid")
-            return
-        }
-        
-        Auth.auth().createUser(withEmail: email, password: password) { (user: User?, error) in
-            if error != nil {
-                print(error as Any)
-                return
-            }
-            
-            guard let uid = user?.uid else {
-                return
-            }
-        
-            //successfully auth'd user
-            
-            let ref = Database.database().reference(fromURL: "https://gameofchats-9b71c.firebaseio.com/")
-            let usersReference = ref.child("users").child(uid)
-            let values = ["name": name, "email": email]
-            usersReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
-                if err != nil {
-                    print(err as Any)
-                    return
-                }
-                self.dismiss(animated: true, completion: nil)
-                print("Saved user into firebase DB successfully")
-            })
-        
-        }
-    }
     
     
     let nameTextField: UITextField = {
@@ -133,13 +101,19 @@ class LoginController: UIViewController {
         return tf
     }()
     
-    let profileImageView: UIImageView = {
+    lazy var profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "direwolf")
         imageView.contentMode = .scaleAspectFill
+        
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectProfileImageView)))
+        imageView.isUserInteractionEnabled = true
+        
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
+    
+    
     
     lazy var loginRegisterSegmentedControl: UISegmentedControl = {
         let sc = UISegmentedControl(items: ["Login", "Register"])
