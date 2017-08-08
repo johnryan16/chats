@@ -33,6 +33,7 @@ class NewMessageController: UITableViewController {
                 
                 user.name = dictionary["name"] as? String
                 user.email = dictionary["email"] as? String
+                user.profileImageUrl = dictionary["profileImageURL"] as? String
                 self.users.append(user)
                 
                 //this will crash bc of bkgnd thread. fix w/ dispatch_async

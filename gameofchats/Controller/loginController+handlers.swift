@@ -28,19 +28,48 @@ extension LoginController: UIImagePickerControllerDelegate, UINavigationControll
                 return
             }
             //successfully auth'd user
-            let ref = Database.database().reference(fromURL: "https://gameofchats-9b71c.firebaseio.com/")
-            let usersReference = ref.child("users").child(uid)
-            let values = ["name": name, "email": email]
-            usersReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
-                if err != nil {
-                    print(err as Any)
-                    return
-                }
-                self.dismiss(animated: true, completion: nil)
-                print("Saved user into firebase DB successfully")
-            })
+            
+            let imageName = NSUUID().uuidString
+            
+            let storageRef = Storage.storage().reference().child("profile_images").child("\(imageName).png")
+            
+            if let uploadData = UIImagePNGRepresentation(self.profileImageView.image!) {
+              
+                storageRef.putData(uploadData, metadata: nil, completion: { (metadata, error) in
+                    
+                    if error != nil {
+                        print(error as Any)
+                        return
+                    }
+                    
+                    if let profileImageUrl = metadata?.downloadURL()?.absoluteString {
+                        
+                        let values = ["name": name, "email": email, "profileImageUrl": profileImageUrl]
+                        
+                        self.registerUserIntoDatabaseWithUid(uid: uid, values: (values as [String : AnyObject]))
+                    }
+                })
+            }
         }
     }
+    
+    private func registerUserIntoDatabaseWithUid(uid: String, values: [String: AnyObject]) {
+        
+        let ref = Database.database().reference(fromURL: "https://gameofchats-9b71c.firebaseio.com/")
+        let usersReference = ref.child("users").child(uid)
+        
+        usersReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
+            if err != nil {
+                print(err as Any)
+                return
+            }
+            self.dismiss(animated: true, completion: nil)
+            
+        })
+        
+        
+    }
+    
     
     @objc func handleSelectProfileImageView() {
         let picker = UIImagePickerController()
