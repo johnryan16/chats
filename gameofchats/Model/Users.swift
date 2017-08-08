@@ -7,7 +7,6 @@
 //
 
 
-// THIS CLASS IS LIKELY not NECESSARY
 
 
 import UIKit
