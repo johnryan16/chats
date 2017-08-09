@@ -63,6 +63,9 @@ extension LoginController: UIImagePickerControllerDelegate, UINavigationControll
                 print(err as Any)
                 return
             }
+            
+            self.messagesController?.fetchUserAndSetupNavBarTitle()
+            
             self.dismiss(animated: true, completion: nil)
             
         })
