@@ -31,9 +31,9 @@ extension LoginController: UIImagePickerControllerDelegate, UINavigationControll
             
             let imageName = NSUUID().uuidString
             
-            let storageRef = Storage.storage().reference().child("profile_images").child("\(imageName).png")
+            let storageRef = Storage.storage().reference().child("profile_images").child("\(imageName).jpg")
             
-            if let uploadData = UIImagePNGRepresentation(self.profileImageView.image!) {
+            if let profileImage = self.profileImageView.image, let uploadData = UIImageJPEGRepresentation(profileImage, 0.1) {
               
                 storageRef.putData(uploadData, metadata: nil, completion: { (metadata, error) in
                     
@@ -63,8 +63,12 @@ extension LoginController: UIImagePickerControllerDelegate, UINavigationControll
                 print(err as Any)
                 return
             }
+
+                let user = Users()
+                user.setValuesForKeys(values)
+                self.messagesController?.setupNavBarWithUser(user: user)
             
-            self.messagesController?.fetchUserAndSetupNavBarTitle()
+            self.messagesController?.setupNavBarWithUser(user: user)
             
             self.dismiss(animated: true, completion: nil)
             

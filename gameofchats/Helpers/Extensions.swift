@@ -25,7 +25,7 @@ extension UIImageView {
             return
         }
         
-        //otherwise fire off new donload
+        //otherwise fire off new download
         let url = URL(string: urlString)
         URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
             

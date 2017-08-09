@@ -98,8 +98,8 @@
 			isa = PBXGroup;
 			children = (
 				1B102C351F335D9F001B2EFA /* MessagesController.swift */,
-				1B63C5AB1F337CCF00A61E97 /* LoginController.swift */,
 				1BE030E41F375DDC00EAA3C1 /* NewMessageController.swift */,
+				1B63C5AB1F337CCF00A61E97 /* LoginController.swift */,
 				1B1D5ED81F37B0480082ED79 /* loginController+handlers.swift */,
 			);
 			path = Controller;
