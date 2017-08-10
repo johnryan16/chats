@@ -15,6 +15,7 @@
 		1B102C3E1F335D9F001B2EFA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B102C3C1F335D9F001B2EFA /* LaunchScreen.storyboard */; };
 		1B1D5ED91F37B0480082ED79 /* loginController+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1D5ED81F37B0480082ED79 /* loginController+handlers.swift */; };
 		1B583FB31F396D2B00FFA12D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B583FB21F396D2B00FFA12D /* Extensions.swift */; };
+		1B583FB51F3BE5E100FFA12D /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B583FB41F3BE5E100FFA12D /* ChatLogController.swift */; };
 		1B63C5AC1F337CCF00A61E97 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B63C5AB1F337CCF00A61E97 /* LoginController.swift */; };
 		1B63C5AE1F33C18700A61E97 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1B63C5AD1F33C18700A61E97 /* GoogleService-Info.plist */; };
 		1BE030E51F375DDC00EAA3C1 /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE030E41F375DDC00EAA3C1 /* NewMessageController.swift */; };
@@ -31,6 +32,7 @@
 		1B102C3F1F335D9F001B2EFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1B1D5ED81F37B0480082ED79 /* loginController+handlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "loginController+handlers.swift"; sourceTree = "<group>"; };
 		1B583FB21F396D2B00FFA12D /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		1B583FB41F3BE5E100FFA12D /* ChatLogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogController.swift; sourceTree = "<group>"; };
 		1B63C5AB1F337CCF00A61E97 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		1B63C5AD1F33C18700A61E97 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1BE030E41F375DDC00EAA3C1 /* NewMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageController.swift; sourceTree = "<group>"; };
@@ -97,10 +99,11 @@
 		1B63C5AA1F337C8500A61E97 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				1B63C5AB1F337CCF00A61E97 /* LoginController.swift */,
 				1B102C351F335D9F001B2EFA /* MessagesController.swift */,
 				1BE030E41F375DDC00EAA3C1 /* NewMessageController.swift */,
-				1B63C5AB1F337CCF00A61E97 /* LoginController.swift */,
 				1B1D5ED81F37B0480082ED79 /* loginController+handlers.swift */,
+				1B583FB41F3BE5E100FFA12D /* ChatLogController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B583FB51F3BE5E100FFA12D /* ChatLogController.swift in Sources */,
 				1BE030E51F375DDC00EAA3C1 /* NewMessageController.swift in Sources */,
 				1B102C361F335D9F001B2EFA /* MessagesController.swift in Sources */,
 				1B63C5AC1F337CCF00A61E97 /* LoginController.swift in Sources */,

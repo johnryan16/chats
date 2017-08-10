@@ -40,10 +40,7 @@ class NewMessageController: UITableViewController {
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
-                
-                
             }
-            
         }, withCancel: nil)
     }
     
@@ -70,23 +67,6 @@ class NewMessageController: UITableViewController {
         if let profileImageUrl = user.profileImageUrl {
      
             cell.profileImageView.loadImageUsingCacheWithUrlString(urlString: profileImageUrl)
-            
-//            let url = URL(string: profileImageUrl)
-//            URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
-//
-//                //print("profileImageUrl is \(profileImageUrl)")
-//                //print("data is \(String(describing: data))")
-//
-//                if error != nil {
-//                    print(error as Any)
-//                    return
-//                }
-//                DispatchQueue.main.async {
-//                    cell.profileImageView.image = UIImage(data: data!)
-//
-//                }
-//
-//            }).resume()
         }
         
         return cell

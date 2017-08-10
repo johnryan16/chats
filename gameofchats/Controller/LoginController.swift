@@ -64,10 +64,7 @@ class LoginController: UIViewController {
                 })
     }
     
-    
-        
-    
-    
+
     let nameTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Name"
