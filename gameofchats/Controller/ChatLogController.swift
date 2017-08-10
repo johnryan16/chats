@@ -73,6 +73,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate {
         separatorLineView.heightAnchor.constraint(equalToConstant: 1).isActive = true
     }
     
+    
     @objc func handleSend() {
         let ref = Database.database().reference().child("messages")
         let childRef = ref.childByAutoId()
