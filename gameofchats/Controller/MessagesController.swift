@@ -25,13 +25,58 @@ class MessagesController: UITableViewController {
         
         tableView.register(UserCell.self, forCellReuseIdentifier: cellId)
         
-        observeMessages()
+//        observeMessages()
+        
         
     }
     
     var messages = [Message]()
     var messagesDictionary = [String: Message]()
     
+    
+    func observeUserMessages() {
+        guard let uid = Auth.auth().currentUser?.uid else {
+            return
+        }
+        
+        let ref = Database.database().reference().child("user-messages").child(uid)
+        
+        ref.observe(.childAdded, with: { (snapshot) in
+           
+            let messageId = snapshot.key
+            let messagesReference = Database.database().reference().child("messages").child(messageId)
+            
+            messagesReference.observeSingleEvent(of: .value, with: { (snapshot) in
+                
+                if let dictionary = snapshot.value as? [String: AnyObject] {
+                    
+                    let message = Message()
+                    message.fromId = dictionary["fromId"] as? String
+                    message.text = dictionary["text"] as? String
+                    message.timeStamp = dictionary["timeStamp"] as? NSNumber
+                    message.toId = dictionary["toId"] as? String
+                    
+                    if let toId = message.toId {
+                        self.messagesDictionary[toId] = message
+                        
+                        self.messages = Array(self.messagesDictionary.values)
+                        
+                        self.messages.sort(by: { (message1 , message2) -> Bool in
+                            
+                            return message1.timeStamp!.intValue > message2.timeStamp!.intValue
+                        })
+                    }
+                    //This will crash in a background thread
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                }
+                
+            }, withCancel: nil)
+            
+        }, withCancel: nil)
+        
+    }
     
     func observeMessages() {
         let ref = Database.database().reference().child("messages")
@@ -45,8 +90,6 @@ class MessagesController: UITableViewController {
                 message.timeStamp = dictionary["timeStamp"] as? NSNumber
                 message.toId = dictionary["toId"] as? String
                 
-//                self.messages.append(message)
-                
                 if let toId = message.toId {
                     self.messagesDictionary[toId] = message
                     
@@ -56,22 +99,12 @@ class MessagesController: UITableViewController {
 
                         return message1.timeStamp!.intValue > message2.timeStamp!.intValue
                     })
-                    
-//                    self.messages.sort{ $0.timeStamp!.intValue > $1.timeStamp!.intValue}
                 }
-                    
-                
-                
                 //This will crash in a background thread
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
-                
-                    
                 }
             }
-            
-            
-            
         }, withCancel: nil)
     }
     
@@ -132,6 +165,12 @@ class MessagesController: UITableViewController {
     }
     
     func setupNavBarWithUser(user: Users) {
+        
+        messages.removeAll()
+        messagesDictionary.removeAll()
+        tableView.reloadData()
+        
+        observeUserMessages()
         
         let titleView = UIView()
         titleView.frame = CGRect(x: 0, y: 0, width: 100, height: 40)
