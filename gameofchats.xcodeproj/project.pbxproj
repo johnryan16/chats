@@ -18,6 +18,8 @@
 		1B583FB51F3BE5E100FFA12D /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B583FB41F3BE5E100FFA12D /* ChatLogController.swift */; };
 		1B63C5AC1F337CCF00A61E97 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B63C5AB1F337CCF00A61E97 /* LoginController.swift */; };
 		1B63C5AE1F33C18700A61E97 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1B63C5AD1F33C18700A61E97 /* GoogleService-Info.plist */; };
+		1BB53D091F3D847B00BDF6CC /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB53D081F3D847B00BDF6CC /* Message.swift */; };
+		1BB53D0C1F3EC1D200BDF6CC /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB53D0B1F3EC1D200BDF6CC /* UserCell.swift */; };
 		1BE030E51F375DDC00EAA3C1 /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE030E41F375DDC00EAA3C1 /* NewMessageController.swift */; };
 		1BE030EA1F3778B100EAA3C1 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE030E91F3778B100EAA3C1 /* Users.swift */; };
 /* End PBXBuildFile section */
@@ -35,6 +37,8 @@
 		1B583FB41F3BE5E100FFA12D /* ChatLogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogController.swift; sourceTree = "<group>"; };
 		1B63C5AB1F337CCF00A61E97 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		1B63C5AD1F33C18700A61E97 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1BB53D081F3D847B00BDF6CC /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		1BB53D0B1F3EC1D200BDF6CC /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		1BE030E41F375DDC00EAA3C1 /* NewMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageController.swift; sourceTree = "<group>"; };
 		1BE030E91F3778B100EAA3C1 /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
 		8B15546A26C57DFDBC6FFFCD /* Pods-gameofchats.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gameofchats.release.xcconfig"; path = "Pods/Target Support Files/Pods-gameofchats/Pods-gameofchats.release.xcconfig"; sourceTree = "<group>"; };
@@ -75,6 +79,7 @@
 		1B102C321F335D9F001B2EFA /* gameofchats */ = {
 			isa = PBXGroup;
 			children = (
+				1BB53D0A1F3EC19300BDF6CC /* View */,
 				1B583FB11F396D0600FFA12D /* Helpers */,
 				1BE030E61F37708100EAA3C1 /* Model */,
 				1B63C5AA1F337C8500A61E97 /* Controller */,
@@ -108,10 +113,19 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		1BB53D0A1F3EC19300BDF6CC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1BB53D0B1F3EC1D200BDF6CC /* UserCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		1BE030E61F37708100EAA3C1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				1BE030E91F3778B100EAA3C1 /* Users.swift */,
+				1BB53D081F3D847B00BDF6CC /* Message.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -259,10 +273,12 @@
 				1B583FB51F3BE5E100FFA12D /* ChatLogController.swift in Sources */,
 				1BE030E51F375DDC00EAA3C1 /* NewMessageController.swift in Sources */,
 				1B102C361F335D9F001B2EFA /* MessagesController.swift in Sources */,
+				1BB53D091F3D847B00BDF6CC /* Message.swift in Sources */,
 				1B63C5AC1F337CCF00A61E97 /* LoginController.swift in Sources */,
 				1BE030EA1F3778B100EAA3C1 /* Users.swift in Sources */,
 				1B1D5ED91F37B0480082ED79 /* loginController+handlers.swift in Sources */,
 				1B102C341F335D9F001B2EFA /* AppDelegate.swift in Sources */,
+				1BB53D0C1F3EC1D200BDF6CC /* UserCell.swift in Sources */,
 				1B583FB31F396D2B00FFA12D /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

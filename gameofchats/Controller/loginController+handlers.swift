@@ -55,7 +55,7 @@ extension LoginController: UIImagePickerControllerDelegate, UINavigationControll
     
     private func registerUserIntoDatabaseWithUid(uid: String, values: [String: AnyObject]) {
         
-        let ref = Database.database().reference(fromURL: "https://gameofchats-9b71c.firebaseio.com/")
+        let ref = Database.database().reference()
         let usersReference = ref.child("users").child(uid)
         
         usersReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
@@ -73,10 +73,7 @@ extension LoginController: UIImagePickerControllerDelegate, UINavigationControll
             self.dismiss(animated: true, completion: nil)
             
         })
-        
-        
     }
-    
     
     @objc func handleSelectProfileImageView() {
         let picker = UIImagePickerController()
