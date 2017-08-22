@@ -56,8 +56,8 @@ class MessagesController: UITableViewController {
                     message.timeStamp = dictionary["timeStamp"] as? NSNumber
                     message.toId = dictionary["toId"] as? String
                     
-                    if let toId = message.toId {
-                        self.messagesDictionary[toId] = message
+                    if let chatPartnerId = message.chatPartnerId() {
+                        self.messagesDictionary[chatPartnerId] = message
                         
                         self.messages = Array(self.messagesDictionary.values)
                         
@@ -66,10 +66,11 @@ class MessagesController: UITableViewController {
                             return message1.timeStamp!.intValue > message2.timeStamp!.intValue
                         })
                     }
-                    //This will crash in a background thread
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                    }
+                    
+                    self.timer?.invalidate()
+                    print("Timer Cancelled")
+                    self.timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.handleReloadTable), userInfo: nil, repeats: false)
+                    print("Schedule table reload in 0.1 seconds")
                 }
                 
             }, withCancel: nil)
@@ -78,35 +79,18 @@ class MessagesController: UITableViewController {
         
     }
     
-    func observeMessages() {
-        let ref = Database.database().reference().child("messages")
-        ref.observe(.childAdded, with: { (snapshot) in
-            
-            if let dictionary = snapshot.value as? [String: AnyObject] {
-                
-                let message = Message()
-                message.fromId = dictionary["fromId"] as? String
-                message.text = dictionary["text"] as? String
-                message.timeStamp = dictionary["timeStamp"] as? NSNumber
-                message.toId = dictionary["toId"] as? String
-                
-                if let toId = message.toId {
-                    self.messagesDictionary[toId] = message
-                    
-                    self.messages = Array(self.messagesDictionary.values)
-                    
-                    self.messages.sort(by: { (message1 , message2) -> Bool in
-
-                        return message1.timeStamp!.intValue > message2.timeStamp!.intValue
-                    })
-                }
-                //This will crash in a background thread
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            }
-        }, withCancel: nil)
+    var timer: Timer?
+    
+    @objc func handleReloadTable() {
+        //This will crash in a background thread
+        DispatchQueue.main.async {
+            print("table reloaded")
+            self.tableView.reloadData()
+        }
+        
     }
+    
+   
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return messages.count
