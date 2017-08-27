@@ -60,11 +60,11 @@ class MessagesController: UITableViewController {
             
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 
-                let message = Message()
-                message.fromId = dictionary["fromId"] as? String
-                message.text = dictionary["text"] as? String
-                message.timeStamp = dictionary["timeStamp"] as? NSNumber
-                message.toId = dictionary["toId"] as? String
+                let message = Message(dictionary: dictionary)
+//                message.fromId = dictionary["fromId"] as? String
+//                message.text = dictionary["text"] as? String
+//                message.timeStamp = dictionary["timeStamp"] as? NSNumber
+//                message.toId = dictionary["toId"] as? String
                 
                 if let chatPartnerId = message.chatPartnerId() {
                     self.messagesDictionary[chatPartnerId] = message
