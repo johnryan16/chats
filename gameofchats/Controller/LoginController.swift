@@ -83,6 +83,7 @@ class LoginController: UIViewController {
     let emailTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Email"
+        tf.keyboardType = .emailAddress
         tf.translatesAutoresizingMaskIntoConstraints = false
         return tf
     }()
@@ -99,6 +100,7 @@ class LoginController: UIViewController {
         tf.placeholder = "Password"
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.isSecureTextEntry = true
+        
         return tf
     }()
     
