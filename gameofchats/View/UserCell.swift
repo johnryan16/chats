@@ -40,7 +40,7 @@ class UserCell: UITableViewCell {
                     self.textLabel?.text = dictionary["name"] as? String
                     
                     if let profileImageUrl = dictionary["profileImageUrl"] as? String {
-                        self.profileImageView.loadImageUsingCacheWithUrlString(urlString: profileImageUrl)
+                        self.profileImageView.loadImageUsingCacheWithUrlString(profileImageUrl)
                     }
                 }
             }, withCancel: nil)

@@ -65,7 +65,7 @@ class NewMessageController: UITableViewController {
         
         if let profileImageUrl = user.profileImageUrl {
      
-            cell.profileImageView.loadImageUsingCacheWithUrlString(urlString: profileImageUrl)
+            cell.profileImageView.loadImageUsingCacheWithUrlString(profileImageUrl)
         }
         return cell
         }

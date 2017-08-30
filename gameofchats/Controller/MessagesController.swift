@@ -239,7 +239,7 @@ class MessagesController: UITableViewController {
         profileImageView.clipsToBounds = true
         
         if let profileImageUrl = user.profileImageUrl {
-            profileImageView.loadImageUsingCacheWithUrlString(urlString: profileImageUrl)
+            profileImageView.loadImageUsingCacheWithUrlString(profileImageUrl)
         }
         
         containerView.addSubview(profileImageView)

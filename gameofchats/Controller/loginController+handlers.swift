@@ -65,7 +65,7 @@ extension LoginController: UIImagePickerControllerDelegate, UINavigationControll
             }
 
                 let user = Users()
-                user.setValuesForKeys(values)
+//                user.setValuesForKeys(values)
                 self.messagesController?.setupNavBarWithUser(user: user)
             
             self.messagesController?.setupNavBarWithUser(user: user)
